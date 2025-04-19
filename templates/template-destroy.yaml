@@ -1,0 +1,40 @@
+
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: environment-destroy
+  title: Example Environment Destroy
+  description: An example template for the Developer Portal
+spec:
+  owner: user:guest
+  type: service
+  parameters:
+    - title: Choose environment
+      required:
+        - componentId
+      properties:
+        componentId:
+          title: Environment
+          type: string
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              kind: Component
+  steps:
+    - id: github-action
+      name: Trigger GitHub Action
+      action: github:actions:dispatch
+      input:
+        workflowId: environment-destroy.yaml  # GitHub Action workflow ID
+        repoUrl: 'github.com?repo=backstage-environment&owner=vvi11iam'
+        branchOrTagName: 'main'  # The branch to run this action on
+        workflowInputs:
+          componentRepoOwner: vvi11iam
+          componentId: ${{ parameters.componentId }}
+          # clusterName: ${{ parameters.clusterName }}
+          # awsRegion: ${{ parameters.region }}
+          # action: ${{ parameters.action }}
+          # apiName: ${{ parameters.environmentName }}
+          # subdomain: ${{ parameters.environmentName }}
+
+  # Destroy ok

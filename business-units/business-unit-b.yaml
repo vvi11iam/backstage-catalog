@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: business-unit-b
+  description: The business unit B
+  # annotations:
+  #   backstage.io/description: The business unit B
+  #   backstage.io/techdocs-ref: url:techdocs:business-unit-b
+  #   backstage.io/techdocs-ref-name: business-unit-b
+  #   backstage.io/techdocs-ref-type: url
+  links:
+    - url: http://google.com
+      title: Website
+    - url: https://meta.wikimedia.org/wiki/
+      title: Intranet
+spec:
+  type: business-unit
+  profile:
+    displayName: Business Unit B
+    email: bu-b@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Maggie&flip=true&backgroundColor=ffdfbf
+  children: [b-devops, b-developer, b-qa, b-designer]

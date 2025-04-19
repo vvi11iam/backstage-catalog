@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: a-qa
+  description: The QA team of Business Unit A
+  # annotations:
+  #   backstage.io/description: The DevOps team of Business Unit A
+  #   backstage.io/owner: business-unit-a
+  #   backstage.io/techdocs-ref: url:techdocs:business-unit-a
+  #   backstage.io/techdocs-ref-name: business-unit-a
+spec:
+  type: team
+  profile:
+    displayName: QA - BU A
+    email: a-qa@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Maggie&flip=true&backgroundColor=ffdfbf
+  children: [yana]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: yana
+spec:
+  profile:
+    # Intentional no displayName for testing
+    email: qa@example.com
+    picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Luna&backgroundColor=transparent
+  memberOf: [a-qa]

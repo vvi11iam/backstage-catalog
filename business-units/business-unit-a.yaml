@@ -1,0 +1,33 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: business-unit-a
+  description: The business unit A
+  # annotations:
+  #   backstage.io/description: The business unit A
+  #   backstage.io/techdocs-ref: url:techdocs:business-unit-a
+  #   backstage.io/techdocs-ref-name: business-unit-a
+  #   backstage.io/techdocs-ref-type: url
+  links:
+    - url: http://google.com
+      title: Website
+    - url: https://meta.wikimedia.org/wiki/
+      title: Intranet
+spec:
+  type: business-unit
+  profile:
+    displayName: Business Unit A
+    email: bu-a@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Maggie&flip=true&backgroundColor=ffdfbf
+  children: [a-devops, a-developer, a-qa]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: business-unit-a
+  description: A collection of all example Business Unit
+spec:
+  targets:
+    - ./a-devops-group.yaml
+    - ./a-developer-group.yaml
+    - ./a-qa.yaml

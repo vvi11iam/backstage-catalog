@@ -1,0 +1,39 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: a-devops
+  description: The DevOps team of Business Unit A
+  # annotations:
+  #   backstage.io/description: The DevOps team of Business Unit A
+  #   backstage.io/owner: business-unit-a
+  #   backstage.io/techdocs-ref: url:techdocs:business-unit-a
+  #   backstage.io/techdocs-ref-name: business-unit-a
+spec:
+  type: team
+  profile:
+    displayName: DevOps - BU A
+    email: a-devops@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Maggie&flip=true&backgroundColor=ffdfbf
+  children: [vvi11iam, leo]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: vvi11iam
+spec:
+  profile:
+    # Intentional no displayName for testing
+    email: vvi11iam@example.com
+    picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Luna&backgroundColor=transparent
+  memberOf: [a-devops]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: leo
+spec:
+  profile:
+    # Intentional no displayName for testing
+    email: leo@example.com
+    picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Luna&backgroundColor=transparent
+  memberOf: [a-devops]

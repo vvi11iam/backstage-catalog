@@ -1,0 +1,116 @@
+
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: environment-create
+  title: Example Environment Create
+  description: An example template for the Developer Portal
+spec:
+  owner: user:guest
+  type: service
+  parameters:
+    - title: Environment info
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the environment
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the environment
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: User
+    - title: Choose image tags
+      required:
+        - feImage
+        - beImage
+      properties:
+        feImage:
+          title: FE tag
+          type: string
+          description: Image tag for FRONTEND service
+        beImage:
+          title: BE tag
+          type: string
+          description: Image tag for BACKEND service
+  steps:
+    - id: fetch-base
+      name: Fetch Bases
+      action: fetch:template
+      input:
+        url: ../content
+        values:
+          name: ${{parameters.name}}
+          owner: ${{parameters.owner}}
+          destination: ${{ parameters.repoUrl | parseRepoUrl }}
+
+    # - id: fetch-docs
+    #   name: Fetch Docs
+    #   action: fetch:plain
+    #   input:
+    #     targetPath: ./community
+    #     url: https://github.com/backstage/community/tree/main/backstage-community-sessions
+
+
+    # This step publishes the contents of the working directory to GitHub.
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: This is ${{ parameters.name }}
+        repoUrl: github.com?repo=${{ parameters.name }}&owner=vvi11iam
+
+    - id: github-action
+      name: Trigger GitHub Action
+      action: github:actions:dispatch
+      input:
+        workflowId: environment-create.yaml  # GitHub Action workflow ID
+        repoUrl: 'github.com?repo=backstage-environment&owner=vvi11iam'
+        branchOrTagName: 'main'  # The branch to run this action on
+        workflowInputs:
+          # clusterName: ${{ parameters.clusterName }}
+          # awsRegion: ${{ parameters.region }}
+          # action: ${{ parameters.action }}
+          environmentName: ${{ parameters.name }}
+          feImage: ${{ parameters.feImage }}
+          beImage: ${{ parameters.beImage }}
+
+    # # The final step is to register our new component in the catalog.
+    # - id: register
+    #   name: Register
+    #   action: catalog:register
+    #   input:
+    #     repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+    #     catalogInfoPath: '/catalog-info.yaml'
+    - action: debug:log
+      id: write-debug-line
+      name: Print environment info
+      input:
+        message: |
+          Please wait a few minutes for the environment to be created.
+          The environment is being created in the background.
+
+          You can check the status of the environment creation in the GitHub Actions tab of the repository.
+          ${{ steps['publish'].output.remoteUrl }}
+
+          The Catalog URL:
+          http://localhost:3000/catalog/default/component/${{ parameters.name }}
+          
+          The environment will be available at the following URL:
+          http://${{ parameters.name }}.example.com
+
+  # Outputs are displayed to the user after a successful execution of the template.
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        # entityRef: ${{ steps['register'].output.entityRef }}
+        url: http://localhost:3000/catalog/default/component/${{ parameters.name }}

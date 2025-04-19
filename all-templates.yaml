@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: template-all
+  description: A collection of all Backstage templates
+spec:
+  targets:
+    - ./templates/template-create.yaml
+    - ./templates/template-destroy.yaml
+    # - ./templates/template-github.yaml
+    # - ./templates/template-gitlab.yaml
+    # - ./templates/template-eks.yaml

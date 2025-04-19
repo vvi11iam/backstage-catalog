@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: example-business-units
+  description: A collection of all Backstage example Business Units
+spec:
+  targets:
+    - ./business-units/business-units.yaml
