@@ -1,6 +1,7 @@
 example-templates/
-./all-apis.yaml
-./all-components.yaml
-./all-domains.yaml
-./all-resources.yaml
-./all-systems.yaml
+
+all-apis.yaml
+all-components.yaml
+all-domains.yaml
+all-resources.yaml
+all-systems.yaml
