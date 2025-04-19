@@ -43,7 +43,7 @@ spec:
       name: Fetch Bases
       action: fetch:template
       input:
-        url: ../content
+        url: ./content
         values:
           name: ${{parameters.name}}
           owner: ${{parameters.owner}}
