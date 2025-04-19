@@ -3,9 +3,9 @@ apiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
-  name: generated-example-template-gitlab
-  title: Scaffolder Example Template Gitlab
-  description: An example template for the scaffolder Gitlab
+  name: example-template-github
+  title: Scaffolder Example Template Github
+  description: An example template for the scaffolder
 spec:
   owner: user:guest
   type: service
@@ -28,20 +28,19 @@ spec:
           ui:options:
             catalogFilter:
               kind: Group
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - gitlab.com
-            allowedOwners:
-              - example-team2
-              - example-org/example-group
+    # - title: Choose a location
+    #   required:
+    #     - repoUrl
+    #   properties:
+    #     repoUrl:
+    #       title: Repository Location
+    #       type: string
+    #       ui:field: RepoUrlPicker
+    #       ui:options:
+    #         allowedHosts:
+    #           - github.com
+    #         allowedOwners:
+    #           - vvi11iam
   steps:
     - id: fetch-base
       name: Fetch Bases
@@ -53,14 +52,23 @@ spec:
           owner: ${{parameters.owner}}
           destination: ${{ parameters.repoUrl | parseRepoUrl }}
 
+    # - id: fetch-docs
+    #   name: Fetch Docs
+    #   action: fetch:plain
+    #   input:
+    #     targetPath: ./community
+    #     url: https://github.com/backstage/community/tree/main/backstage-community-sessions
+
+
     # This step publishes the contents of the working directory to GitHub.
     - id: publish
       name: Publish
-      action: publish:gitlab
+      action: publish:github
       input:
-        allowedHosts: ['gitlab.com']
+        allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: github.com?repo=${{ parameters.name }}&owner=vvi11iam
+        # repoUrl: ${{ parameters.repoUrl }}
 
     # The final step is to register our new component in the catalog.
     - id: register
@@ -75,6 +83,8 @@ spec:
     links:
       - title: Repository
         url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Catalog URL
+        url: http://localhost:3000/catalog/default/component/${{ parameters.name }}
       - title: Open in catalog
         icon: catalog
         entityRef: ${{ steps['register'].output.entityRef }}

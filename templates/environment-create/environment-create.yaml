@@ -3,7 +3,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: environment-create
-  title: Example Environment Create
+  title: Environment Create
   description: An example template for the Developer Portal
 spec:
   owner: user:guest

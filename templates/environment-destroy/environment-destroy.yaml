@@ -3,7 +3,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: environment-destroy
-  title: Example Environment Destroy
+  title: Environment Destroy
   description: An example template for the Developer Portal
 spec:
   owner: user:guest

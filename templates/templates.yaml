@@ -1,8 +1,9 @@
 apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
-  name: all-templates
+  name: templates
   description: A collection of all Backstage templates
 spec:
   targets:
-    - ./templates/templates.yaml
+    - ./environment-create/environment-create.yaml
+    - ./environment-destroy/environment-destroy.yaml
