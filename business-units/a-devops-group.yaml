@@ -14,6 +14,7 @@ spec:
     displayName: DevOps - BU A
     email: a-devops@example.com
     picture: https://api.dicebear.com/7.x/identicon/svg?seed=Maggie&flip=true&backgroundColor=ffdfbf
+  children: []
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User
