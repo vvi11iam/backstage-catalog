@@ -113,6 +113,9 @@ spec:
           
           The component will be available in the catalog on the next sync.
 
+
           **Creation workflow:** https://github.com/vvi11iam/backstage-environment/actions/workflows/environment-create.yaml
-          **The Catalog URL:** http://localhost:3000/catalog/default/component/${{ parameters.name }}          
+
+          **The Catalog URL:** http://localhost:3000/catalog/default/component/${{ parameters.name }}
+          
           **The environment URL:** http://${{ parameters.name }}.example.com
