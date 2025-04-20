@@ -6,7 +6,7 @@ metadata:
   title: Environment Create
   description: An example template for the Developer Portal
 spec:
-  owner: user:guest
+  owner: group:default/a-devops
   type: service
   parameters:
     - title: Environment info
@@ -93,36 +93,24 @@ spec:
     #   name: Print environment info
     #   input:
     #     message: |
-    #       Please wait a few minutes for the environment to be created.
-    #       The environment is being created in the background.
-
-    #       You can check the status of the environment creation in the GitHub Actions tab of the repository.
-    #       ${{ steps['publish'].output.remoteUrl }}
-
-    #       The Catalog URL:
-    #       http://localhost:3000/catalog/default/component/${{ parameters.name }}
-          
-    #       The environment will be available at the following URL:
-    #       http://${{ parameters.name }}.example.com
+    #       Dummy log.
 
   # Outputs are displayed to the user after a successful execution of the template.
   output:
     links:
-      - title: Repository
-        url: ${{ steps['publish'].output.remoteUrl }}
-      - title: Open in catalog
-        icon: catalog
-        # entityRef: ${{ steps['register'].output.entityRef }}
-        url: http://localhost:3000/catalog/default/component/${{ parameters.name }}
+      # - title: Repository
+      #   url: ${{ steps['publish'].output.remoteUrl }}
+      # - title: Open in catalog
+      #   icon: catalog
+      #   # entityRef: ${{ steps['register'].output.entityRef }}
+      #   url: http://localhost:3000/catalog/default/component/${{ parameters.name }}
     text:
       - title: More information
         content: |
           Please wait a few minutes for the environment to be created.
           The environment is being created in the background.
+          The component will be available in the catalog on the next sync.
 
-          You can check the status of the environment creation in the GitHub Actions tab of the repository.
-          ${{ steps['publish'].output.remoteUrl }}
-
-          **The Catalog URL:** http://localhost:3000/catalog/default/component/${{ parameters.name }}
-          
+          **Creation workflow:** https://github.com/vvi11iam/backstage-environment/actions/workflows/environment-create.yaml
+          **The Catalog URL:** http://localhost:3000/catalog/default/component/${{ parameters.name }}          
           **The environment URL:** http://${{ parameters.name }}.example.com

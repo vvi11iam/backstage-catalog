@@ -6,7 +6,7 @@ metadata:
   title: Environment Destroy
   description: An example template for the Developer Portal
 spec:
-  owner: user:guest
+  owner: group:default/a-devops
   type: service
   parameters:
     - title: Choose environment
@@ -37,4 +37,13 @@ spec:
           # apiName: ${{ parameters.environmentName }}
           # subdomain: ${{ parameters.environmentName }}
 
-  # Destroy ok
+  output:
+    text:
+      - title: More information
+        content: |
+          Please wait a few minutes for the environment to be destroyed.
+          The environment is being destroyed in the background.
+          The component will be removed from the catalog on the next sync.
+
+          **Deletion workflow:**
+          https://github.com/vvi11iam/backstage-environment/actions/workflows/environment-destroy.yaml
