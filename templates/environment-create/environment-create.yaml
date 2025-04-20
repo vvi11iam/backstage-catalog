@@ -88,22 +88,22 @@ spec:
     #   input:
     #     repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
     #     catalogInfoPath: '/catalog-info.yaml'
-    - action: debug:log
-      id: write-debug-line
-      name: Print environment info
-      input:
-        message: |
-          Please wait a few minutes for the environment to be created.
-          The environment is being created in the background.
+    # - action: debug:log
+    #   id: write-debug-line
+    #   name: Print environment info
+    #   input:
+    #     message: |
+    #       Please wait a few minutes for the environment to be created.
+    #       The environment is being created in the background.
 
-          You can check the status of the environment creation in the GitHub Actions tab of the repository.
-          ${{ steps['publish'].output.remoteUrl }}
+    #       You can check the status of the environment creation in the GitHub Actions tab of the repository.
+    #       ${{ steps['publish'].output.remoteUrl }}
 
-          The Catalog URL:
-          http://localhost:3000/catalog/default/component/${{ parameters.name }}
+    #       The Catalog URL:
+    #       http://localhost:3000/catalog/default/component/${{ parameters.name }}
           
-          The environment will be available at the following URL:
-          http://${{ parameters.name }}.example.com
+    #       The environment will be available at the following URL:
+    #       http://${{ parameters.name }}.example.com
 
   # Outputs are displayed to the user after a successful execution of the template.
   output:
@@ -114,3 +114,15 @@ spec:
         icon: catalog
         # entityRef: ${{ steps['register'].output.entityRef }}
         url: http://localhost:3000/catalog/default/component/${{ parameters.name }}
+    text:
+      - title: More information
+        content: |
+          Please wait a few minutes for the environment to be created.
+          The environment is being created in the background.
+
+          You can check the status of the environment creation in the GitHub Actions tab of the repository.
+          ${{ steps['publish'].output.remoteUrl }}
+
+          **The Catalog URL:** http://localhost:3000/catalog/default/component/${{ parameters.name }}
+          
+          **The environment URL:** http://${{ parameters.name }}.example.com
