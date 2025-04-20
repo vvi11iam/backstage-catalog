@@ -14,7 +14,7 @@ spec:
     displayName: Developer - BU A
     email: a-developer@example.com
     picture: https://api.dicebear.com/7.x/identicon/svg?seed=Maggie&flip=true&backgroundColor=ffdfbf
-  children: [blue, timi]
+  children: []
 ---
 apiVersion: backstage.io/v1alpha1
 kind: User
