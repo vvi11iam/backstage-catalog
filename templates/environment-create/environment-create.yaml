@@ -105,10 +105,12 @@ spec:
       #   # entityRef: ${{ steps['register'].output.entityRef }}
       #   url: http://localhost:3000/catalog/default/component/${{ parameters.name }}
     text:
-      - title: More information
+      - title: Information
         content: |
           Please wait a few minutes for the environment to be created.
+
           The environment is being created in the background.
+          
           The component will be available in the catalog on the next sync.
 
           **Creation workflow:** https://github.com/vvi11iam/backstage-environment/actions/workflows/environment-create.yaml

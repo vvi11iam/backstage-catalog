@@ -39,10 +39,12 @@ spec:
 
   output:
     text:
-      - title: More information
+      - title: Information
         content: |
           Please wait a few minutes for the environment to be destroyed.
+
           The environment is being destroyed in the background.
+          
           The component will be removed from the catalog on the next sync.
 
           **Deletion workflow:**
