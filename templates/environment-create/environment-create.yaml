@@ -78,8 +78,8 @@ spec:
           # awsRegion: ${{ parameters.region }}
           # action: ${{ parameters.action }}
           environmentName: ${{ parameters.name }}
-          feImage: vvi11iamng0/devops-learning-platform-fe:${{ parameters.feImage }}
-          beImage: vvi11iamng0/devops-learning-platform-be:${{ parameters.beImage }}
+          feImage: vvi11iamng0/devops-learning-platform-fe:${{ parameters.feTag }}
+          beImage: vvi11iamng0/devops-learning-platform-be:${{ parameters.beTag }}
 
     # # The final step is to register our new component in the catalog.
     # - id: register
